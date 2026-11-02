@@ -11,7 +11,7 @@
 <body>
   <!-- FOND VIDÉO GLOBAL -->
   <div class="site-bg">
-    <video autoplay loop muted playsinline class="bg-video">
+    <video autoplay loop muted playsinline preload="auto" class="bg-video">
       <source src="mavideo.mp4" type="video/mp4">
     </video>
     <div class="bg-overlay"></div>
@@ -24,8 +24,9 @@
     </a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="#projects"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span></a>
-      <a href="#journey"><span data-lang="fr">Parcours</span><span data-lang="en">Journey</span></a>
-      <a href="#about"><span data-lang="fr">À propos</span><span data-lang="en">About</span></a>
+      <a href="mobilite.html"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span></a>
+      <a href="engagement.html"><span data-lang="fr">Engagement civique</span><span data-lang="en">Civic Engagement</span></a>
+      <a href="ppp.html"><span data-lang="fr">PPP</span><span data-lang="en">PPP</span></a>
       <a href="#cv"><span data-lang="fr">CV</span><span data-lang="en">Resume</span></a>
       <a href="#contact"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></a>
     </nav>
@@ -48,14 +49,9 @@
         
         <h1 class="hero__name">Clément Magenties</h1>
         
-        <p class="hero__skills">
-          <span data-lang="fr">Automatique · Systèmes Embarqués · Électronique · Drones</span>
-          <span data-lang="en">Control Theory · Embedded Systems · Electronics · Drones</span>
-        </p>
-
-        <p class="hero__text">
-          <span data-lang="fr">Étudiant ingénieur à l’ENSEEIHT, je conçois, contrôle et expérimente des systèmes physiques réels — avec une approche alliant rigueur théorique, traitement de données et réalisation pratique.</span>
-          <span data-lang="en">Engineering student at ENSEEIHT, I design, control, and experiment with real-world physical systems — combining theoretical modeling, data processing, and hands-on implementation.</span>
+        <p class="hero__skills" style="margin-bottom: 32px;">
+          <span data-lang="fr">Automatique · Systèmes Embarqués · Électronique · Robotique & Drones</span>
+          <span data-lang="en">Control Theory · Embedded Systems · Electronics · Robotics & Drones</span>
         </p>
 
         <div class="hero__actions">
@@ -76,7 +72,7 @@
         <h2><span data-lang="fr">Ce que je construis</span><span data-lang="en">What I build</span></h2>
       </div>
 
-      <div class="projects-grid">
+      <div class="projects-grid projects-grid--4">
         <!-- 01 : FPV Drone -->
         <article class="project-card glass-panel reveal">
           <a class="project-card__media" href="drone.html" aria-label="Projet Drone FPV">
@@ -93,12 +89,6 @@
               <span data-lang="fr">Analyse télémétrique Blackbox à 2 kHz, traitement du signal sous Python et réglage de filtres biquad sur quadricoptère personnalisé.</span>
               <span data-lang="en">2 kHz Blackbox telemetry analysis, Python signal processing, and biquad filter tuning on a custom quadcopter.</span>
             </p>
-            <div class="tags">
-              <span>Python</span>
-              <span>PID</span>
-              <span>Blackbox</span>
-              <span>Betaflight</span>
-            </div>
             <a class="text-link" href="drone.html">
               <span data-lang="fr">Explorer le projet →</span>
               <span data-lang="en">Explore project →</span>
@@ -122,12 +112,6 @@
               <span data-lang="fr">Conception conjointe matériel/logiciel : décodage d'adresse sous Quartus, pilotes C bas niveau et gestion d'interruptions sur carte DE1-SoC.</span>
               <span data-lang="en">Hardware/software co-design: address decoding in Quartus, low-level C drivers, and interrupt handling on a DE1-SoC board.</span>
             </p>
-            <div class="tags">
-              <span>C</span>
-              <span>FPGA Cyclone V</span>
-              <span>NIOS II</span>
-              <span>Quartus</span>
-            </div>
             <a class="text-link" href="c-project.html">
               <span data-lang="fr">Explorer le projet →</span>
               <span data-lang="en">Explore project →</span>
@@ -151,12 +135,6 @@
               <span data-lang="fr">Conception d'un banc de stockage inertiel (SISE), mesure de J par pendule de torsion et modélisation énergétique sous Python.</span>
               <span data-lang="en">Design of an experimental flywheel energy storage bench (FESS), moment of inertia characterization, and Python modeling.</span>
             </p>
-            <div class="tags">
-              <span>Énergie</span>
-              <span>Python</span>
-              <span>Latis Pro</span>
-              <span>Signal</span>
-            </div>
             <a class="text-link" href="flywheel.html">
               <span data-lang="fr">Explorer le projet →</span>
               <span data-lang="en">Explore project →</span>
@@ -167,25 +145,19 @@
         <!-- 04 : TEAMNEPAL -->
         <article class="project-card glass-panel reveal reveal--delay">
           <a class="project-card__media" href="nepal.html" aria-label="Projet Solidaire Népal">
-            <img src="nepal.jpg" alt="Village de Chapali Népal">
+            <img src="nepal_prayer_flags.jpg" alt="Drapeaux de prières tibétains et collines de Chapali au Népal">
           </a>
           <div class="project-card__body">
             <div class="project-card__meta"><span>04</span><span>TEAMNEPAL · 2026</span></div>
             <h3>Nepal</h3>
             <p class="project-card__subtitle">
-              <span data-lang="fr">Solidarité internationale & Création numérique</span>
-              <span data-lang="en">International Solidarity & Digital Storytelling</span>
+              <span data-lang="fr">Solidarité, Cinéma ODD & Numérique</span>
+              <span data-lang="en">Solidarity, SDG Cinema & Digital Media</span>
             </p>
             <p>
-              <span data-lang="fr">5 semaines à Chapali pour co-créer 3 courts-métrages ODD avec des lycéens népalais et organiser des Olympiades pour 260 élèves.</span>
-              <span data-lang="en">5 weeks in Chapali co-creating 3 SDG short films with students at Victor Hugo School and hosting Olympics for 260 pupils.</span>
+              <span data-lang="fr">38 jours à Chapali pour co-créer des courts-métrages fiction avec les élèves et soutenir l'école (budget : 9 300 €, financé par le FONJEP, N7DEV et les Alumnis).</span>
+              <span data-lang="en">38 days in Chapali co-creating student fiction films and supporting the school (9,300 € budget, backed by FONJEP, N7DEV and Alumni).</span>
             </p>
-            <div class="tags">
-              <span>Vidéo</span>
-              <span>Éducation</span>
-              <span>Solidarité</span>
-              <span>Direction</span>
-            </div>
             <a class="text-link" href="nepal.html">
               <span data-lang="fr">Découvrir le projet →</span>
               <span data-lang="en">Discover project →</span>
@@ -195,10 +167,86 @@
       </div>
     </section>
 
+    <!-- MOBILITÉ, ENGAGEMENT & PPP -->
+    <section id="academic" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">02 · <span data-lang="fr">ORIENTATION & ENGAGEMENT</span><span data-lang="en">PATHWAY & ENGAGEMENT</span></p>
+        <h2><span data-lang="fr">Mobilité, Engagement & PPP</span><span data-lang="en">Mobility, Engagement & PPP</span></h2>
+      </div>
+
+      <div class="projects-grid projects-grid--3">
+        <!-- TUILE 1 : MOBILITÉ INTERNATIONALE -->
+        <article class="project-card glass-panel reveal">
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span>NÉPAL · STAGE 2A</span>
+            </div>
+            <h3><span data-lang="fr">Mobilité Internationale</span><span data-lang="en">International Mobility</span></h3>
+            <p class="project-card__subtitle">
+              <span data-lang="fr">Immersion au Népal & Stage à l'étranger</span>
+              <span data-lang="en">Nepal Immersion & Internship Abroad</span>
+            </p>
+            <p>
+              <span data-lang="fr">Après 6 semaines sur le terrain au Népal, je prépare mon stage de deuxième année à l'étranger dans la robotique caméra et les drones.</span>
+              <span data-lang="en">Following 6 weeks on the ground in Nepal, I am preparing my year 2 internship abroad in camera robotics and drones.</span>
+            </p>
+            <a class="text-link" href="mobilite.html">
+              <span data-lang="fr">Voir la mobilité internationale →</span>
+              <span data-lang="en">View international mobility →</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- TUILE 2 : ENGAGEMENT ASSOCIATIF & CITOYEN -->
+        <article class="project-card glass-panel reveal reveal--delay">
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span>ASSOCIATIF · SOLIDARITÉ</span>
+            </div>
+            <h3><span data-lang="fr">Engagement Civique</span><span data-lang="en">Civic Engagement</span></h3>
+            <p class="project-card__subtitle">
+              <span data-lang="fr">TEAMNEPAL, TVN7 & Human7</span>
+              <span data-lang="en">TEAMNEPAL, TVN7 & Human7</span>
+            </p>
+            <p>
+              <span data-lang="fr">Président de TEAMNEPAL (mission solidaire et éducative de 9 300 € au Népal financée par le FONJEP, N7DEV et les Alumnis), membre actif de TVN7 et Vice-Président d'Human7.</span>
+              <span data-lang="en">President of TEAMNEPAL (9,300 € educational solidarity project in Nepal funded by FONJEP, N7DEV, and Alumni), active TVN7 member, and Vice-President of Human7.</span>
+            </p>
+            <a class="text-link" href="engagement.html">
+              <span data-lang="fr">Découvrir mes engagements →</span>
+              <span data-lang="en">Explore civic initiatives →</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- TUILE 3 : PPP -->
+        <article class="project-card glass-panel reveal">
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span>ORIENTATION PROFESSIONNELLE</span>
+            </div>
+            <h3><span data-lang="fr">PPP</span><span data-lang="en">PPP</span></h3>
+            <p class="project-card__subtitle">
+              <span data-lang="fr">Drones, Automatique, Image & Vidéo</span>
+              <span data-lang="en">Drones, Control Systems, Imaging & Video</span>
+            </p>
+            <p>
+              <span data-lang="fr">Mon projet professionnel : lier l'automatique, les drones, l'image et la vidéo, avec une trajectoire claire de stages et d'alternance.</span>
+              <span data-lang="en">My career project: connecting control systems, drones, imaging, and video, with a clear roadmap of internships and work-study.</span>
+            </p>
+            <a class="text-link" href="ppp.html">
+              <span data-lang="fr">Voir le projet PPP →</span>
+              <span data-lang="en">View PPP project →</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- JOURNEY -->
     <section id="journey" class="section journey">
       <div class="section-heading reveal">
-        <p class="eyebrow">02 · <span data-lang="fr">PARCOURS</span><span data-lang="en">JOURNEY</span></p>
+        <p class="eyebrow">03 · <span data-lang="fr">PARCOURS</span><span data-lang="en">JOURNEY</span></p>
         <h2><span data-lang="fr">Mon parcours d'ingénieur</span><span data-lang="en">My engineering journey</span></h2>
       </div>
 
@@ -257,7 +305,7 @@
     <!-- ABOUT -->
     <section id="about" class="section about">
       <div class="section-heading reveal">
-        <p class="eyebrow">03 · <span data-lang="fr">À PROPOS</span><span data-lang="en">ABOUT ME</span></p>
+        <p class="eyebrow">04 · <span data-lang="fr">À PROPOS</span><span data-lang="en">ABOUT ME</span></p>
         <h2><span data-lang="fr">Qui je suis</span><span data-lang="en">Who I am</span></h2>
       </div>
 
@@ -266,43 +314,19 @@
           <img src="moi.png" alt="Clément Magenties">
         </div>
 
-        <div class="about-copy glass-panel reveal reveal--delay" style="padding: 40px; border-radius: 20px;">
-          <p class="about-intro">
-            <span data-lang="fr">Je m'appelle Clément, j'ai 21 ans, et j'étudie l'ingénierie à l'ENSEEIHT. Ce qui me passionne, c'est de comprendre la structure intime d'un système physique, puis de passer rapidement de la théorie à l'expérimentation et à la réalisation concrète.</span>
-            <span data-lang="en">I'm Clément, 21 years old, studying engineering at ENSEEIHT. What drives me is understanding physical systems from the ground up, then bridging theory with rigorous testing and hands-on building.</span>
+        <div class="about-copy glass-panel reveal reveal--delay" style="padding: 36px 40px; border-radius: 20px; display: flex; flex-direction: column; gap: 16px;">
+          <p style="font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0;">
+            <span data-lang="fr">Je suis quelqu'un qui aime avant tout faire des projets et construire : concevoir, assembler et donner vie à des idées, que ce soit un système technique ou un projet humain. Ce qui me motive au quotidien, c'est de bâtir des choses qui ont un impact réel.</span>
+            <span data-lang="en">Above all, I love building projects: designing, crafting, and turning ideas into reality, whether through dynamic engineering systems or community initiatives. What truly motivates me is creating things with genuine impact.</span>
           </p>
-          <div class="values">
-            <div class="value">
-              <h3><span data-lang="fr">01 · Concevoir & Monter</span><span data-lang="en">01 · Build & Prototype</span></h3>
-              <p><span data-lang="fr">J'assemble et calibre du matériel physique : châssis drones, cartes FPGA, capteurs et circuits électroniques.</span><span data-lang="en">I assemble and calibrate physical hardware: custom drone frames, FPGA boards, sensors, and electronic circuits.</span></p>
-            </div>
-            <div class="value">
-              <h3><span data-lang="fr">02 · Mesurer & Asservir</span><span data-lang="en">02 · Measure & Control</span></h3>
-              <p><span data-lang="fr">J'acquiers des données réelles, analyse les spectres fréquentiels sous Python et règle finement les boucles de contrôle (PID).</span><span data-lang="en">I acquire real sensor data, analyze frequency spectra in Python, and fine-tune feedback control loops (PID).</span></p>
-            </div>
-            <div class="value">
-              <h3><span data-lang="fr">03 · Documenter & Transmettre</span><span data-lang="en">03 · Document & Share</span></h3>
-              <p><span data-lang="fr">Je photographie et filme mes projets pour vulgariser la démarche technique, partager les résultats et animer des projets associatifs (TVN7, TEAMNEPAL).</span><span data-lang="en">I photograph and produce videos to communicate technical approaches, share results, and lead community projects (TVN7, TEAMNEPAL).</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="personal-grid reveal">
-        <div class="personal-card glass-panel">
-          <span class="personal-icon">🚁</span>
-          <h3><span data-lang="fr">FPV & Réalisation</span><span data-lang="en">FPV & Video</span></h3>
-          <p><span data-lang="fr">Pilotage immersif haute précision, protocoles radio (ExpressLRS), télémétrie de vol et montage vidéo (DaVinci Resolve, TVN7).</span><span data-lang="en">High-precision immersive flying, radio protocols (ExpressLRS), flight telemetry, and video editing (DaVinci Resolve, TVN7).</span></p>
-        </div>
-        <div class="personal-card glass-panel">
-          <span class="personal-icon">🏐</span>
-          <h3><span data-lang="fr">Sports d'équipe</span><span data-lang="en">Team Sports</span></h3>
-          <p><span data-lang="fr">Handball en compétition régionale et basketball. Rigueur, esprit collectif, prise de décision rapide et communication.</span><span data-lang="en">Regional competition handball and basketball. Team cohesion, discipline, rapid decision-making, and communication.</span></p>
-        </div>
-        <div class="personal-card glass-panel">
-          <span class="personal-icon">⛰️</span>
-          <h3><span data-lang="fr">Outdoor & Montagne</span><span data-lang="en">Outdoor & Mountains</span></h3>
-          <p><span data-lang="fr">Vélo de route, randonnées et treks en haute altitude, paddle. Goût de l'effort continu, endurance et adaptabilité.</span><span data-lang="en">Road cycling, high-altitude trekking, and paddleboarding. Focus on endurance, resilience, and adaptability.</span></p>
+          <p style="font-size: 15px; line-height: 1.7; color: var(--muted); margin: 0;">
+            <span data-lang="fr">C'est cette envie qui nous a poussés à monter <strong>TEAMNEPAL</strong> en partant de zéro : lever des fonds, fédérer une équipe et mener une mission solidaire de 38 jours à Chapali pour co-créer des films avec les élèves et soutenir l'école. C'est aussi cette démarche qui m'anime dans mon projet de <strong>drone FPV</strong> : partir d'un besoin de captation visuelle dynamique, concevoir la machine, décoder la télémétrie à 2 kHz sous Python et régler finement les boucles de contrôle.</span>
+            <span data-lang="en">This mindset led us to build <strong>TEAMNEPAL</strong> from scratch: raising funds, structuring a team, and directing a 38-day mission in Chapali to co-create films with students and support their school. It is the same drive behind my <strong>FPV drone</strong> project: starting from dynamic camera framing needs, building the hardware, analyzing 2 kHz telemetry in Python, and fine-tuning feedback control loops.</span>
+          </p>
+          <p style="font-size: 15px; line-height: 1.7; color: var(--muted); margin: 0;">
+            <span data-lang="fr">Si j'ai choisi de faire une école d'ingénieurs comme l'ENSEEIHT en 3EA, c'est précisément pour me donner les moyens scientifiques et techniques de réaliser des projets encore plus gros et plus ambitieux : c'est véritablement ça qui me fait vivre.</span>
+            <span data-lang="en">Choosing an engineering school like ENSEEIHT (3EA) is directly tied to this ambition: mastering the scientific and technical tools to take on even bigger, more demanding projects — that is what truly drives me every day.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -311,7 +335,7 @@
     <section id="cv" class="section">
       <div class="cv-card glass-panel reveal">
         <div>
-          <p class="eyebrow">04 · <span data-lang="fr">CURRICULUM VITAE</span><span data-lang="en">RESUME</span></p>
+          <p class="eyebrow">05 · <span data-lang="fr">CURRICULUM VITAE</span><span data-lang="en">RESUME</span></p>
           <h2><span data-lang="fr">Mon parcours en une page.</span><span data-lang="en">My journey on one page.</span></h2>
           <p>
             <span data-lang="fr">Retrouvez mon profil technique complet, mes compétences clés (Automatique, Électronique, Python, C, FPGA), mes expériences et mes formations.</span>
@@ -321,6 +345,7 @@
             <a class="button button--primary" href="cv_clement_magenties_3ea_fr.pdf" download data-lang="fr">Télécharger le CV 3EA (ATS) ↓</a>
             <a class="button button--primary" href="cv_drone_swiss_en.pdf" download data-lang="en">Download Resume (EN) ↓</a>
             <a class="button button--secondary" href="cv_drone_swiss_fr.pdf" download data-lang="fr">Version Drone FPV (PDF)</a>
+            <a class="button button--secondary" href="cv_drone_swiss_en.pdf" download data-lang="en">FPV Drone Resume (PDF)</a>
             <a class="button button--secondary" href="https://www.linkedin.com/in/magenties-clement/" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </div>
@@ -334,7 +359,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section">
       <div class="glass-panel reveal" style="padding: 50px 40px; border-radius: var(--radius); text-align: center;">
-        <p class="eyebrow">05 · <span data-lang="fr">CONTACT</span><span data-lang="en">CONTACT</span></p>
+        <p class="eyebrow">06 · <span data-lang="fr">CONTACT</span><span data-lang="en">CONTACT</span></p>
         <h2 style="margin: 0 0 16px; font-size: clamp(28px, 3.5vw, 42px);">
           <span data-lang="fr">Échangeons sur un projet</span>
           <span data-lang="en">Let's connect</span>
@@ -344,8 +369,8 @@
           <span data-lang="en">Have a technical question, an internship opportunity, or an innovative project to build? Feel free to reach out directly.</span>
         </p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a class="button button--primary" href="mailto:clement.magenties@etu.inp-n7.fr">
-            <span>✉ clement.magenties@etu.inp-n7.fr</span>
+          <a class="button button--primary" href="mailto:clement.magenties@etu.toulouse-inp.fr">
+            <span>✉ clement.magenties@etu.toulouse-inp.fr</span>
           </a>
           <a class="button button--secondary" href="tel:+33637792012">
             <span>📞 +33 6 37 79 20 12</span>
@@ -363,31 +388,6 @@
     <span>ENSEEIHT · 3EA · Toulouse</span>
   </footer>
 
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const buttons = document.querySelectorAll("[data-lang-switch]");
-      function setLang(lang) {
-        root.classList.toggle("lang-fr", lang === "fr");
-        root.classList.toggle("lang-en", lang === "en");
-        buttons.forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.langSwitch === lang)));
-        document.documentElement.lang = lang;
-        try { localStorage.setItem("portfolio_lang", lang); } catch (e) {}
-      }
-      buttons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.langSwitch)));
-      const savedLang = localStorage.getItem("portfolio_lang") || "fr";
-      setLang(savedLang);
-
-      const revealElements = document.querySelectorAll(".reveal");
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); }
-          });
-        }, { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
-      } else { revealElements.forEach(el => el.classList.add("is-visible")); }
-    })();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

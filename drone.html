@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FPV Drone Optimization — Blackbox & PID Tuning — Clément Magenties</title>
+  <title>Drone FPV & Asservissement PID — Clément Magenties</title>
   <link rel="stylesheet" href="style.css">
   <style>
     code {
@@ -14,40 +14,31 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 0.9em;
     }
-    .tech-list {
-      margin-top: 12px;
-      padding-left: 20px;
-    }
-    .tech-list li {
-      margin-bottom: 8px;
-    }
-    .project-header-bg, .story-block {
-      position: relative;
-    }
-    .project-header-bg::before, .story-block::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(10, 12, 18, 0.65);
-      z-index: 1;
-    }
-    .project-header-content, .story-card {
-      position: relative;
-      z-index: 2;
-    }
   </style>
 </head>
 <body>
+  <!-- FOND VIDÉO GLOBAL -->
+  <div class="site-bg">
+    <video autoplay loop muted playsinline preload="auto" class="bg-video">
+      <source src="mavideo.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+  </div>
+
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="Accueil">
       <span class="brand__dot"></span>
       <span>Clément Magenties</span>
     </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html#projects"><span data-lang="fr">Projets</span><span data-lang="en">Projects</span></a>
+      <a href="mobilite.html"><span data-lang="fr">Mobilité</span><span data-lang="en">Mobility</span></a>
+      <a href="engagement.html"><span data-lang="fr">Engagement civique</span><span data-lang="en">Civic Engagement</span></a>
+      <a href="ppp.html"><span data-lang="fr">PPP</span><span data-lang="en">PPP</span></a>
+      <a href="index.html#cv"><span data-lang="fr">CV</span><span data-lang="en">Resume</span></a>
+      <a href="index.html#contact"><span data-lang="fr">Contact</span><span data-lang="en">Contact</span></a>
+    </nav>
     <div class="nav-actions">
-      <a class="nav-link" href="index.html#projects">
-        <span data-lang="fr">← Tous les projets</span>
-        <span data-lang="en">← All projects</span>
-      </a>
       <div class="lang-switch" role="group" aria-label="Language switch">
         <button class="lang-btn" data-lang-switch="fr" aria-pressed="true">FR</button>
         <button class="lang-btn" data-lang-switch="en" aria-pressed="false">EN</button>
@@ -55,108 +46,92 @@
     </div>
   </header>
 
-  <main>
-    <!-- HERO HEADER -->
-    <div class="project-header-bg reveal" style="background-image: url('https://images.unsplash.com/photo-1581458925206-8d197607a9ee?auto=format&fit=crop&w=1600&q=80');">
-      <div class="project-header-content">
-        <p class="eyebrow">
-          <span data-lang="fr">PROJET PERSONNEL · CONCEPTION & COMMANDE · 2026</span>
-          <span data-lang="en">PERSONAL PROJECT · DESIGN & FLIGHT CONTROL · 2026</span>
-        </p>
-        <h1>FPV Drone Optimization</h1>
-        <p class="hero__lead">
-          <span data-lang="fr">Analyse télémétrique Blackbox à 2 kHz, traitement du signal sous Python et filtrage fréquentiel pour l'optimisation dynamique des boucles PID d'un quadricoptère 6 pouces sur mesure.</span>
-          <span data-lang="en">2 kHz high-rate Blackbox telemetry, Python spectral signal analysis, and digital filtering to optimize PID control loops on a custom 6-inch quadcopter.</span>
-        </p>
-      </div>
+  <main class="page-container">
+    <!-- EN-TÊTE SOBRE -->
+    <div class="page-hero reveal">
+      <p class="eyebrow">
+        <span data-lang="fr">PROJET PERSONNEL · CONCEPTION & COMMANDE · 2026</span>
+        <span data-lang="en">PERSONAL PROJECT · DESIGN & FLIGHT CONTROL · 2026</span>
+      </p>
+      <h1>
+        <span data-lang="fr">Drone FPV 6" : Contrôle & Filtrage PID</span>
+        <span data-lang="en">6" FPV Drone: Control & PID Tuning</span>
+      </h1>
+      <p class="hero__lead">
+        <span data-lang="fr">Analyse télémétrique Blackbox à 2 kHz, traitement du signal sous Python et filtrage fréquentiel pour optimiser le comportement dynamique d'un quadricoptère sur mesure.</span>
+        <span data-lang="en">2 kHz high-rate Blackbox telemetry, Python spectral signal analysis, and digital filtering to optimize PID control loops on a custom 6-inch quadcopter.</span>
+      </p>
     </div>
 
-    <!-- ÉTAPE 01 -->
-    <div class="story-block" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1600&q=80');">
-      <div class="story-card reveal">
-        <span class="story-num">01</span>
+    <!-- TUILE 1 : LA PROBLÉMATIQUE -->
+    <div class="split-card reveal">
+      <div class="split-card__content">
         <h2>
           <span data-lang="fr">La Problématique Dynamique</span>
           <span data-lang="en">The Dynamic Challenge</span>
         </h2>
         <p>
-          <span data-lang="fr">Après assemblage mécanique et électronique d'un quadricoptère 6 pouces orienté cinématique et longue portée, le comportement dynamique en vol présentait des instabilités marquées : fortes oscillations lors des reprises de gaz dans le sillage aérodynamique des hélices (propwash) et transmission de bruits parasites haute fréquence aux moteurs brushless.</span>
-          <span data-lang="en">Following the hardware build of a 6-inch cinematic long-range quadcopter, initial test flights revealed severe dynamic instability: violent propwash oscillations when re-applying throttle through turbulent wake, and high-frequency vibrations bleeding into brushless motors.</span>
+          <span data-lang="fr">Après assemblage mécanique et câblage d'un quadricoptère 6 pouces orienté cinématique, les premiers essais en vol présentaient des instabilités : oscillations marquées lors des reprises de gaz dans le sillage des hélices (*propwash*) et transmission de bruits parasites haute fréquence aux moteurs brushless.</span>
+          <span data-lang="en">Following the hardware build of a 6-inch cinematic quadcopter, initial test flights revealed instabilities: violent propwash oscillations when re-applying throttle through turbulent wake, and high-frequency noise reaching the motors.</span>
         </p>
         <p>
-          <span data-lang="fr">Les profils de commande par défaut sous Betaflight n'étaient pas calibrés pour l'inertie massique et la souplesse structurelle de ce châssis carbone, nécessitant une analyse rigoureuse de la chaîne d'asservissement.</span>
-          <span data-lang="en">Default Betaflight firmware PID configurations were ill-fitted to the higher rotational inertia and structural flexing of this specific frame, demanding custom control engineering.</span>
+          <span data-lang="fr">Les profils de commande par défaut n'étaient pas calibrés pour l'inertie massique et la souplesse structurelle de ce châssis, nécessitant une démarche rigoureuse de mesure et d'asservissement.</span>
+          <span data-lang="en">Default firmware profiles were ill-fitted to the rotational inertia and structural flexing of this specific frame, demanding custom control engineering.</span>
         </p>
+      </div>
+      <div class="split-card__media">
+        <img src="https://images.unsplash.com/photo-1581458925206-8d197607a9ee?auto=format&fit=crop&w=800&q=80" alt="Drone FPV 6 pouces">
       </div>
     </div>
 
-    <!-- ÉTAPE 02 -->
-    <div class="story-block" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80');">
-      <div class="story-card reveal">
-        <span class="story-num">02</span>
+    <!-- TUILE 2 : TÉLÉMÉTRIE & PYTHON -->
+    <div class="split-card split-card--reverse reveal">
+      <div class="split-card__content">
         <h2>
-          <span data-lang="fr">Télémétrie Blackbox & Traitement Python</span>
-          <span data-lang="en">Blackbox Telemetry & Python Processing</span>
+          <span data-lang="fr">Télémétrie Blackbox 2 kHz & Python</span>
+          <span data-lang="en">2 kHz Blackbox Telemetry & Python</span>
         </h2>
         <p>
-          <span data-lang="fr">Pour substituer des métriques quantitatives au simple ressenti en vol, j'ai configuré l'enregistrement Blackbox à un taux d'échantillonnage de 2 kHz sur la mémoire flash du contrôleur de vol. Les données brutes ont ensuite été extraites et décodées via un pipeline Python personnalisé (<code>NumPy</code>, <code>Matplotlib</code>).</span>
-          <span data-lang="en">To replace qualitative flight sensations with hard numbers, I enabled Blackbox logging at 2 kHz directly on the flight controller's onboard flash memory. The raw logs were exported and parsed through a tailored Python pipeline (<code>NumPy</code>, <code>Matplotlib</code>).</span>
+          <span data-lang="fr">Pour remplacer le ressenti par des grandeurs mesurables, j'ai activé l'enregistrement Blackbox à 2 kHz sur la mémoire flash du contrôleur de vol. Les données brutes ont ensuite été décodées et analysées via des scripts Python (<code>NumPy</code>, <code>Matplotlib</code>).</span>
+          <span data-lang="en">To replace qualitative flight sensations with hard numbers, I enabled Blackbox logging at 2 kHz on the flight controller's onboard flash memory, then parsed the logs using custom Python scripts (<code>NumPy</code>, <code>Matplotlib</code>).</span>
         </p>
         <p>
-          <span data-lang="fr">Ce traitement a permis d'isoler chaque axe de rotation (Roll, Pitch, Yaw), de superposer la consigne du pilote (Setpoint) à la réponse physique réelle mesurée par le gyroscope (Gyro), et de calculer l'erreur quadratique de poursuite lors des manœuvres agressives.</span>
-          <span data-lang="en">This enabled isolation of each rotational axis (Roll, Pitch, Yaw), overlaying stick input commands (Setpoint) with the physical gyro rate response to measure tracking errors during high-speed maneuvers.</span>
+          <span data-lang="fr">Ce traitement a permis d'isoler chaque axe de rotation (Roll, Pitch, Yaw), de superposer la consigne pilote à la réponse mesurée par le gyroscope, et d'évaluer précisément l'erreur de poursuite.</span>
+          <span data-lang="en">This enabled isolation of each rotational axis (Roll, Pitch, Yaw), overlaying stick commands with the physical gyro rate response to measure tracking errors.</span>
         </p>
+      </div>
+      <div class="split-card__media">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Analyse de données et télémétrie">
       </div>
     </div>
 
-    <!-- ÉTAPE 03 -->
-    <div class="story-block" style="background-image: url('https://images.unsplash.com/photo-1614064641913-a53b390450af?auto=format&fit=crop&w=1600&q=80');">
-      <div class="story-card reveal">
-        <span class="story-num">03</span>
+    <!-- TUILE 3 : RÉGLAGE PID -->
+    <div class="split-card reveal">
+      <div class="split-card__content">
         <h2>
-          <span data-lang="fr">Analyse Spectrale & Réglage PID</span>
-          <span data-lang="en">Spectral Analysis & Closed-Loop Tuning</span>
+          <span data-lang="fr">Filtrage Dynamique & Comportement Verrouillé</span>
+          <span data-lang="en">Dynamic Filtering & Locked-in Control</span>
         </h2>
         <p>
-          <span data-lang="fr">L'application d'une transformée de Fourier rapide (FFT) sur le signal gyroscopique a mis en évidence un pic de résonance mécanique critique du châssis centré autour de 180 Hz. Ce pic saturait la composante dérivée (D) de la boucle de contrôle, provoquant une surchauffe moteur.</span>
-          <span data-lang="en">Applying a Fast Fourier Transform (FFT) on the raw gyroscopic signal revealed a sharp structural resonance peak at 180 Hz. This resonance saturated the derivative (D) term of the PID loop, triggering motor overheating and oscillations.</span>
+          <span data-lang="fr">L'application d'une transformée de Fourier rapide (FFT) a mis en évidence une résonance structurelle à 180 Hz qui saturait le terme dérivé (D). L'implantation de filtres coupe-bande asservis au régime moteur (RPM filtering) a permis d'éliminer le bruit mécanique sans retard de phase.</span>
+          <span data-lang="en">A Fast Fourier Transform (FFT) revealed a mechanical resonance peak at 180 Hz saturating the derivative term. Dynamic notch filters synchronized to motor RPM telemetry removed noise without introducing phase lag.</span>
         </p>
         <p>
-          <span data-lang="fr">Grâce à l'implantation de filtres numériques biquad passe-bas et de filtres coupe-bande dynamiques (dynamic notch filters) asservis aux fréquences de rotation des moteurs via télémétrie ESC (RPM filter), nous avons éradiqué le bruit sans dégrader le retard de phase. Cela a permis d'augmenter significativement les gains proportionnels (P) et dérivés (D). Résultat : un comportement verrouillé, zéro vibration résiduelle et une réactivité optimale.</span>
-          <span data-lang="en">By configuring digital biquad low-pass filters and dynamic notch filtering synchronized to motor RPM telemetry, we eradicated mechanical noise without sacrificing phase margin. This cleared the way to push proportional (P) and derivative (D) gains significantly higher. The final result: a locked-in trajectory, zero residual oscillations, and maximum flight authority.</span>
+          <span data-lang="fr">Résultat : un comportement verrouillé, zéro vibration parasite dans l'image et une fluidité cinématique optimale pour le cadrage en vol.</span>
+          <span data-lang="en">Result: locked-in tracking, zero parasitic vibrations in camera footage, and optimal kinematic fluidity for framing in flight.</span>
         </p>
+      </div>
+      <div class="split-card__media">
+        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=800&q=80" alt="Vol cinématique en montagne">
       </div>
     </div>
   </main>
 
-  <footer class="footer section" style="padding-top:0;">
+  <footer class="footer page-container" style="padding-top:20px;">
     <span>© 2026 Clément Magenties</span>
     <span>ENSEEIHT · 3EA</span>
   </footer>
 
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const buttons = document.querySelectorAll("[data-lang-switch]");
-      function setLang(lang) {
-        root.classList.toggle("lang-fr", lang === "fr");
-        root.classList.toggle("lang-en", lang === "en");
-        buttons.forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.langSwitch === lang)));
-        document.documentElement.lang = lang;
-        try { localStorage.setItem("portfolio_lang", lang); } catch (e) {}
-      }
-      buttons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.langSwitch)));
-      const savedLang = localStorage.getItem("portfolio_lang") || "fr";
-      setLang(savedLang);
-
-      const revealElements = document.querySelectorAll(".reveal");
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); } });
-        }, { threshold: 0.1 });
-        revealElements.forEach(el => observer.observe(el));
-      } else { revealElements.forEach(el => el.classList.add("is-visible")); }
-    })();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
