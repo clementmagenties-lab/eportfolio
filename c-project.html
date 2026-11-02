@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr" class="lang-fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Robot BoB — Low-Level Drivers & FPGA — Clément Magenties</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    code {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #82aaff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    .tech-list {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+    .tech-list li {
+      margin-bottom: 8px;
+    }
+    .project-header-bg, .story-block {
+      position: relative;
+    }
+    .project-header-bg::before, .story-block::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 12, 18, 0.65);
+      z-index: 1;
+    }
+    .project-header-content, .story-card {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Accueil">
+      <span class="brand__dot"></span>
+      <span>Clément Magenties</span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-link" href="index.html#projects">
+        <span data-lang="fr">← Tous les projets</span>
+        <span data-lang="en">← All projects</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="lang-btn" data-lang-switch="fr" aria-pressed="true">FR</button>
+        <button class="lang-btn" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO HEADER -->
+    <div class="project-header-bg reveal" style="background-image: url('robot_bob.jpg');">
+      <div class="project-header-content">
+        <p class="eyebrow">
+          <span data-lang="fr">ENSEEIHT · SYSTÈMES EMBARQUÉS & CALCULATEURS · 1A/2A</span>
+          <span data-lang="en">ENSEEIHT · EMBEDDED SYSTEMS & COMPUTER ARCHITECTURE · 1A/2A</span>
+        </p>
+        <h1>Robot BoB</h1>
+        <p class="hero__lead">
+          <span data-lang="fr">Conception conjointe matériel et logiciel : pilotage autonome d'un robot mobile via des pilotes bas niveau en C, un décodage d'adresses combinatoire et une architecture événementielle sur FPGA DE1-SoC.</span>
+          <span data-lang="en">Hardware/software co-design: autonomous mobile robot control through low-level C drivers, combinational address decoding, and event-driven interrupts on a DE1-SoC FPGA.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 01 -->
+    <div class="story-block" style="background-image: url('robot_fpga.jpg');">
+      <div class="story-card reveal">
+        <span class="story-num">01</span>
+        <h2>
+          <span data-lang="fr">Architecture Matérielle & Décodage</span>
+          <span data-lang="en">Hardware Architecture & Address Decoding</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Le projet s'appuie sur une carte Terasic DE1-SoC intégrant un FPGA Intel Cyclone V. Sur la matrice configurable, nous instancions un microprocesseur softcore 32 bits <code>NIOS II</code> cadencé à 50 MHz, connecté via le bus standardisé Avalon.</span>
+          <span data-lang="en">The platform runs on a Terasic DE1-SoC development board featuring an Intel Cyclone V FPGA. A 32-bit <code>NIOS II</code> softcore processor running at 50 MHz was instantiated and interconnected through the Avalon bus specification.</span>
+        </p>
+        <p>
+          <span data-lang="fr">Pour interfacer le robot, une zone mémoire dédiée de 64 octets (<code>0x00</code> à <code>0x3F</code>) a été allouée, puis sous-découpée en 8 zones de 8 octets. Nous avons conçu sous Quartus Prime la logique de sélection combinatoire (signaux <code>CS0</code> à <code>CS7</code>) en synthétisant les équations logiques à partir des bits d'adresses <code>A[5..0]</code> et du signal de synchronisation <code>BUS_ENABLE</code>.</span>
+          <span data-lang="en">To interface the robot, a 64-byte memory region (<code>0x00</code> to <code>0x3F</code>) was assigned and partitioned into eight 8-byte zones. Under Quartus Prime, we synthesized combinational decoding logic (selection signals <code>CS0</code> to <code>CS7</code>) based on address lines <code>A[5..0]</code> validated by <code>BUS_ENABLE</code>.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 02 -->
+    <div class="story-block" style="background-image: url('robot_interface.jpg');">
+      <div class="story-card reveal">
+        <span class="story-num">02</span>
+        <h2>
+          <span data-lang="fr">Pilotes C Bas Niveau & Masquage</span>
+          <span data-lang="en">Low-Level C Drivers & Bitwise Masking</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Sous l'IDE Eclipse NIOS II, nous avons développé l'intégralité des pilotes de périphériques en langage C via des accès directs en mémoire projetée (<code>volatile short*</code>) :</span>
+          <span data-lang="en">Using Eclipse NIOS II, we authored all hardware peripheral drivers in low-level C using memory-mapped I/O (<code>volatile short*</code>):</span>
+        </p>
+        <ul class="tech-list">
+          <li>
+            <span data-lang="fr"><strong>Affichage & Diagnostics :</strong> Pilotes pour afficheurs 7 segments (chiffres 0 à 99 et code d'erreur <code>EE</code>) et chenillard sur les 10 LEDs rouges.</span>
+            <span data-lang="en"><strong>Display & Diagnostics:</strong> Drivers for 7-segment displays (values 0–99 and error flag <code>EE</code>) and 10 red status LEDs.</span>
+          </li>
+          <li>
+            <span data-lang="fr"><strong>Acquisition Joystick :</strong> Extraction des 5 positions et du bouton de sécurité par masquage binaire (<code>ET</code> bit à bit et décalages logiques) sur mot de 16 bits.</span>
+            <span data-lang="en"><strong>Joystick Acquisition:</strong> Parsing directional inputs and push button via bitwise masking (<code>AND</code> operators and logical bit shifts) on 16-bit registers.</span>
+          </li>
+          <li>
+            <span data-lang="fr"><strong>Capteurs Infrarouges :</strong> Suivi de trajectoire au sol via 3 paires émetteurs/récepteurs optiques différenciant le contraste blanc/noir.</span>
+            <span data-lang="en"><strong>Infrared Sensors:</strong> Line tracking through 3 optical transceiver pairs detecting ground contrast.</span>
+          </li>
+          <li>
+            <span data-lang="fr"><strong>Télémétrie Ultrasons :</strong> 3 capteurs SRF05 (gauche, centre, droit) mesurant le temps de vol d'ondes ultrasons pour calculer la distance d'obstacle de 0 à 100 cm.</span>
+            <span data-lang="en"><strong>Ultrasonic Rangefinders:</strong> 3 SRF05 sensors (left, center, right) measuring round-trip acoustic pulse delays to yield distance from 0 to 100 cm.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 03 -->
+    <div class="story-block" style="background-image: url('robot_display.jpg');">
+      <div class="story-card reveal">
+        <span class="story-num">03</span>
+        <h2>
+          <span data-lang="fr">MLI Moteurs & Gestion d'Interruptions</span>
+          <span data-lang="en">PWM Motor Control & Interrupt Systems</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Les 4 roues motrices sont propulsées par des moteurs à courant continu pilotés 2 à 2 par des hacheurs 4 quadrants. La modulation de largeur d'impulsion (MLI / PWM) est générée par un timer astable (période de base 10 ms) et des signaux monostables calibrés (1 ms pour la vitesse arrière max, 1,5 ms pour l'arrêt, 2 ms pour la marche avant max).</span>
+          <span data-lang="en">The four drive wheels are powered by DC motors driven in pairs through 4-quadrant H-bridges. Pulse Width Modulation (PWM) is synthesized using a 10ms astable timer and monostable pulses (1ms full reverse, 1.5ms neutral stop, 2ms full forward).</span>
+        </p>
+        <p>
+          <span data-lang="fr">Pour dépasser les limites temporelles de la simple boucle de scrutation (polling), nous avons fait évoluer l'architecture vers deux modes d'interruptions avancés :</span>
+          <span data-lang="en">To overcome the latency constraints of continuous polling loops, we evolved the architecture toward two advanced interrupt models:</span>
+        </p>
+        <ul class="tech-list">
+          <li>
+            <span data-lang="fr"><strong>Interruptions Périodiques Préemptives :</strong> Gestion multi-tâches prioritaires avec <code>TIMER_0</code> (priorité haute pour la sécurité d'obstacle &lt; 50 cm) et <code>TIMER_1</code> (navigation joystick / suivi de ligne).</span>
+            <span data-lang="en"><strong>Preemptive Periodic Interrupts:</strong> Prioritized multi-timer scheduling with <code>TIMER_0</code> (high priority obstacle emergency check &lt; 50 cm) and <code>TIMER_1</code> (joystick control / line following).</span>
+          </li>
+          <li>
+            <span data-lang="fr"><strong>Interruptions Événementielles :</strong> Détection matérielle de fronts montants/descendants via une machine à états à bascules D sous Quartus, déclenchant l'exécution immédiate d'un sous-programme en cas de changement de ligne ou de seuil de sécurité critique (&lt; 20 cm).</span>
+            <span data-lang="en"><strong>Aperiodic Event-Driven Interrupts:</strong> Hardware edge detection using a D flip-flop state machine in Quartus, firing immediate ISR execution on line state transitions or critical obstacle thresholds (&lt; 20 cm).</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer section" style="padding-top:0;">
+    <span>© 2026 Clément Magenties</span>
+    <span>ENSEEIHT · 3EA</span>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll("[data-lang-switch]");
+      function setLang(lang) {
+        root.classList.toggle("lang-fr", lang === "fr");
+        root.classList.toggle("lang-en", lang === "en");
+        buttons.forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.langSwitch === lang)));
+        document.documentElement.lang = lang;
+        try { localStorage.setItem("portfolio_lang", lang); } catch (e) {}
+      }
+      buttons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.langSwitch)));
+      const savedLang = localStorage.getItem("portfolio_lang") || "fr";
+      setLang(savedLang);
+
+      const revealElements = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); } });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+      } else { revealElements.forEach(el => el.classList.add("is-visible")); }
+    })();
+  </script>
+</body>
+</html>

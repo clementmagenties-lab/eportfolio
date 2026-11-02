@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr" class="lang-fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Flywheel Energy Storage — CPGE TIPE — Clément Magenties</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    code {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #82aaff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+    .tech-list {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+    .tech-list li {
+      margin-bottom: 8px;
+    }
+    .project-header-bg, .story-block {
+      position: relative;
+    }
+    .project-header-bg::before, .story-block::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 12, 18, 0.65);
+      z-index: 1;
+    }
+    .project-header-content, .story-card {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Accueil">
+      <span class="brand__dot"></span>
+      <span>Clément Magenties</span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-link" href="index.html#projects">
+        <span data-lang="fr">← Tous les projets</span>
+        <span data-lang="en">← All projects</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="lang-btn" data-lang-switch="fr" aria-pressed="true">FR</button>
+        <button class="lang-btn" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO HEADER -->
+    <div class="project-header-bg reveal" style="background-image: url('1_flywheel.jpg');">
+      <div class="project-header-content">
+        <p class="eyebrow">
+          <span data-lang="fr">CPGE PIERRE DE FERMAT · TIPE SESSION 2025</span>
+          <span data-lang="en">CPGE PIERRE DE FERMAT · TIPE 2025 SESSION</span>
+        </p>
+        <h1>Flywheel Energy Storage</h1>
+        <p class="hero__lead">
+          <span data-lang="fr">Étude expérimentale d'un système inertiel de stockage d'énergie (SISE) pour réguler la fréquence du réseau électrique et pallier l'intermittence des énergies renouvelables.</span>
+          <span data-lang="en">Experimental investigation of a Flywheel Energy Storage System (FESS) to stabilize grid frequency and mitigate renewable energy intermittency.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 01 -->
+    <div class="story-block" style="background-image: url('2_flywheel.png');">
+      <div class="story-card reveal">
+        <span class="story-num">01</span>
+        <h2>
+          <span data-lang="fr">Banc d'Essai & Modélisation Physique</span>
+          <span data-lang="en">Experimental Test Bench & Modeling</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Dans le cadre du thème « Transition, transformation, conversion », ce projet explore le stockage électromécanique par volant d'inertie comme alternative haute réactivité et durable aux batteries chimiques pour absorber les pics de production photovoltaïque ou éolienne.</span>
+          <span data-lang="en">Under the theme "Transition, transformation, conversion", this research investigates electromechanical flywheel storage as a durable, fast-response alternative to chemical batteries for absorbing renewable generation surges.</span>
+        </p>
+        <p>
+          <span data-lang="fr">Nous avons conçu un banc d'essai couplant un moteur/générateur à courant continu à des rotors interchangeables. La caractérisation rigoureuse du moment d'inertie <em>J</em> de chaque volant a été menée expérimentalement par la méthode du pendule de torsion :</span>
+          <span data-lang="en">We designed a laboratory test bench coupling a DC motor/generator to interchangeable rotors. The moment of inertia <em>J</em> was characterized through a torsion pendulum setup:</span>
+        </p>
+        <p style="text-align: center; font-style: italic;">
+          J = (C · T²) / (4π²)
+        </p>
+        <p>
+          <span data-lang="fr">L'instrumentation synchronisée sous le logiciel Latis Pro (carte d'acquisition SYSAM) enregistre en temps réel la vitesse angulaire via une fourche optique et les grandeurs électriques (tensions et courants aux bornes du moteur et des résistances de charge/décharge).</span>
+          <span data-lang="en">Instrumentation synchronized in Latis Pro via a SYSAM acquisition board captures real-time rotational speed through an optical photogate and electrical parameters (voltage and current across motor and charge/discharge resistors).</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 02 -->
+    <div class="story-block" style="background-image: url('3_flywheel.png');">
+      <div class="story-card reveal">
+        <span class="story-num">02</span>
+        <h2>
+          <span data-lang="fr">Traitement du Signal & Algorithmes Python</span>
+          <span data-lang="en">Signal Processing & Python Pipeline</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Pour exploiter les séries temporelles brutes, j'ai développé des scripts d'analyse sous Python exploitant <code>NumPy</code>, <code>SciPy</code> et <code>Matplotlib</code>. L'un des défis majeurs a été le filtrage des bruits et rebonds de commutation du capteur optique.</span>
+          <span data-lang="en">To process raw experimental data, I authored a Python data processing pipeline leveraging <code>NumPy</code>, <code>SciPy</code>, and <code>Matplotlib</code>. A central challenge was filtering noise and optical sensor glitches during state transitions.</span>
+        </p>
+        <p>
+          <span data-lang="fr">L'algorithme segmente les passages de languettes en détectant les puits de tension fonctionnels sous seuil conditionnel (<code>tension &lt; 3V</code>). La vitesse angulaire est reconstruite par interpolation spline cubique (<code>CubicSpline</code>) et filtres passe-bas de Butterworth. L'intégration numérique des puissances instantanées (<code>np.trapz</code>) permet de séparer précisément le régime transitoire, l'énergie injectée, l'énergie cinétique stockée et les pertes mécaniques.</span>
+          <span data-lang="en">The algorithm isolates valid tooth passages by thresholding voltage wells (<code>voltage &lt; 3V</code>). Angular velocity is reconstructed using cubic splines (<code>CubicSpline</code>) and digital Butterworth low-pass filtering. Numerical integration of instantaneous powers (<code>np.trapz</code>) accurately quantifies injected energy, stored kinetic energy, and dissipation.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 03 -->
+    <div class="story-block" style="background-image: url('4_flywheel.png');">
+      <div class="story-card reveal">
+        <span class="story-num">03</span>
+        <h2>
+          <span data-lang="fr">Analyse Comparative & Rendements</span>
+          <span data-lang="en">Comparative Analysis & Efficiency</span>
+        </h2>
+        <p>
+          <span data-lang="fr">Nous avons comparé deux géométries et matériaux de volants d'inertie afin d'isoler l'impact de la répartition des masses et des frottements aérodynamiques :</span>
+          <span data-lang="en">We compared two rotor geometries and materials to evaluate mass distribution and aerodynamic drag influences:</span>
+        </p>
+        <ul class="tech-list">
+          <li>
+            <span data-lang="fr"><strong>Volant en béton cylindrique :</strong> <em>J</em> = 0,0042 kg·m², vitesse maximale de 75 rad/s. Rendement global de charge/décharge de 8,7 % avec un rendement à la décharge atteignant 25,1 %.</span>
+            <span data-lang="en"><strong>Solid Concrete Cylinder:</strong> <em>J</em> = 0.0042 kg·m², max speed 75 rad/s. Overall round-trip efficiency of 8.7% with discharge recovery reaching 25.1%.</span>
+          </li>
+          <li>
+            <span data-lang="fr"><strong>Volant « roue de vélo » (masse périphérique) :</strong> <em>J</em> = 0,098 kg·m², vitesse maximale plafonnée à 32 rad/s. Rendement global limité à 1,1 % en raison de la traînée aérodynamique sévère des rayons non carénés.</span>
+            <span data-lang="en"><strong>"Bicycle Wheel" Rotor (rim mass):</strong> <em>J</em> = 0.098 kg·m², top speed restricted to 32 rad/s. Efficiency dropped to 1.1% due to massive aerodynamic drag on unfaired spokes.</span>
+          </li>
+        </ul>
+        <p>
+          <span data-lang="fr">Conclusion de l'étude : pour maximiser le rendement d'une micro-SISE sur réseau, il est crucial de privilégier des vitesses de rotation élevées, de confiner le rotor sous vide partiel ou carénage profilé, et d'exploiter le volant sur des cycles d'injection courts pour minimiser les pertes par frottement.</span>
+          <span data-lang="en">Key takeaways: to maximize FESS efficiency on power grids, systems must prioritize high rotational velocities, reduced fluid drag (enclosures or vacuum), and short cycle intervals to prevent aerodynamic energy leakage.</span>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer section" style="padding-top:0;">
+    <span>© 2026 Clément Magenties</span>
+    <span>ENSEEIHT · 3EA</span>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll("[data-lang-switch]");
+      function setLang(lang) {
+        root.classList.toggle("lang-fr", lang === "fr");
+        root.classList.toggle("lang-en", lang === "en");
+        buttons.forEach(btn => btn.setAttribute("aria-pressed", String(btn.dataset.langSwitch === lang)));
+        document.documentElement.lang = lang;
+        try { localStorage.setItem("portfolio_lang", lang); } catch (e) {}
+      }
+      buttons.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.langSwitch)));
+      const savedLang = localStorage.getItem("portfolio_lang") || "fr";
+      setLang(savedLang);
+
+      const revealElements = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); } });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+      } else { revealElements.forEach(el => el.classList.add("is-visible")); }
+    })();
+  </script>
+</body>
+</html>
